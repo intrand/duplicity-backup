@@ -1,22 +1,20 @@
-FROM alpine:latest
+FROM registry.intrand.io/base/python:2021.11.19.01
+
+COPY backup.py backup.yml /opt/app/
 
 RUN apk add --no-cache \
 		ca-certificates \
 		duplicity \
-		py3-pip \
 		openssh \
 		rsync && \
-	pip3 install --no-cache --upgrade install \
-		pip \
-		pyyaml \
-		sh && \
-	adduser -D -u 1000 duplicity && \
-	mkdir -p ~duplicity/.cache/duplicity && \
-	mkdir -p ~duplicity/.gnupg && \
-	chown -R duplicity:duplicity ~duplicity;
+	mkdir -p \
+		~app/.cache/duplicity \
+		~app/.gnupg && \
+	chown -R app:app ~app && \
+	chown -R root:root /opt/app && \
+	find /opt/app -type d -exec chmod 755 {} + && \
+	find /opt/app -type f -exec chmod 644 {} +;
 
-COPY backup.py backup.yml /opt/
+USER app
 
-USER duplicity
-
-ENTRYPOINT ["python3", "-u", "/opt/backup.py"]
+ENTRYPOINT ["python3", "-u", "/opt/app/backup.py"]
