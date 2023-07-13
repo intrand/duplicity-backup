@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: backup.py",
+            "type": "python",
+            "request": "launch",
+            "program": "backup.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "GNUPGHOME": "/home/x",
+            },
+            "args": [
+                "--command", "list-current-files",
+                // "--command", "restore",
+                // "--source.baseDir", "/tmp/restore",
+                // "--all-subdirectories", "false",
+                // "--directories", "['dpkg', 'cron.d']"
+                // "--command", "remove-all-but-n-full",
+                // "--args",
+                // "['1','--force']",
+            ]
+        }
+    ]
+}

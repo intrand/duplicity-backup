@@ -9,7 +9,7 @@ log:
   file: stdout
 
 # gpg:
-  # public: SOMEKEY123GOES123HERE
+  # fingerprint: SOMEKEY123GOES123HERE
 
 source:
   # /baseDir/directory
